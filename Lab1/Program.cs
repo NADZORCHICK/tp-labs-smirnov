@@ -117,3 +117,31 @@ class Program
 
         Console.WriteLine(result);
     }
+
+    static void Task3()
+    {
+        Console.Write("Введите x: ");
+
+        if (!double.TryParse(Console.ReadLine(), out double x))
+        {
+            Console.WriteLine("Ошибка: введите вещественное число.");
+            return;
+        }
+
+        if (x < 54)
+        {
+            Console.WriteLine("Функция не определена: под корнем отрицательное число (нужно x >= 54).");
+            return;
+        }
+
+        double sinX2 = Math.Sin(x * x);
+
+        if (sinX2 == 0)
+        {
+            Console.WriteLine("Функция не определена: деление на ноль (sin(x^2) = 0).");
+            return;
+        }
+
+        double a = Math.Sqrt(x - 54) + Math.Cos(x / 2) / sinX2 - Math.Log(x);
+        Console.WriteLine($"A = {a}");
+    }
