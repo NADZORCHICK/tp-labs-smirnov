@@ -145,3 +145,52 @@ class Program
         double a = Math.Sqrt(x - 54) + Math.Cos(x / 2) / sinX2 - Math.Log(x);
         Console.WriteLine($"A = {a}");
     }
+
+    static void Task4()
+    {
+        Console.Write("Введите x (-1 < x <= 1): ");
+        string input = Console.ReadLine();
+        double x;
+        bool ok = double.TryParse(input, out x);
+
+        if (ok == false || x <= -1 || x > 1)
+        {
+            Console.WriteLine("Ошибка: x должен быть в интервале (-1; 1].");
+            return;
+        }
+
+        double eps = 1e-9;
+        double sum = 0;
+        int count = 0;
+        int n = 1;
+
+        while (true)
+        {
+            double sign;
+            if (n % 2 == 1)
+            {
+                sign = 1;
+            }
+            else
+            {
+                sign = -1;
+            }
+
+            double term = sign * Math.Pow(x, n) / n;
+
+            if (Math.Abs(term) <= eps)
+            {
+                break;
+            }
+
+            sum = sum + term;
+            count = count + 1;
+            n = n + 1;
+        }
+
+        double libValue = Math.Log(1 + x);
+
+        Console.WriteLine("Сумма ряда: " + sum);
+        Console.WriteLine("Math.Log(1 + x): " + libValue);
+        Console.WriteLine("Просуммировано членов: " + count);
+    }
