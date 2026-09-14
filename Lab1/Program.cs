@@ -81,3 +81,39 @@ class Program
         }
         return result;
     }
+
+    static void Task2()
+    {
+        Console.Write("Введите n: ");
+        string input = Console.ReadLine();
+        int n;
+        bool ok = int.TryParse(input, out n);
+
+        if (ok == false || n < 0)
+        {
+            Console.WriteLine("Ошибка: нужно неотрицательное целое число.");
+            return;
+        }
+
+        string result = "";
+        long a = 0;
+        long b = 1;
+
+        while (a <= n)
+        {
+            if (result == "")
+            {
+                result = a.ToString();
+            }
+            else
+            {
+                result = result + ", " + a.ToString();
+            }
+
+            long next = a + b;
+            a = b;
+            b = next;
+        }
+
+        Console.WriteLine(result);
+    }
