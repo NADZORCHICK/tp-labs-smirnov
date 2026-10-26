@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-
 public class CaesarCipher
 {
     private const string Alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
