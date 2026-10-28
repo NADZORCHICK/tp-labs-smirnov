@@ -10,7 +10,6 @@ class Program
     const string LogFile = "chat.log";
 
     // Подключённые клиенты: ник
-
     static Dictionary<string, StreamWriter> clients =
         new Dictionary<string, StreamWriter>(StringComparer.OrdinalIgnoreCase);
 
