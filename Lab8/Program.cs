@@ -44,15 +44,18 @@ sorted.Sort();
 Console.WriteLine($"Медианная сумма: {sorted[sorted.Count / 2]}  ({sw.ElapsedMilliseconds} мс)");
 // --- 5. Сумма покупок каждого покупателя ---
 sw.Restart();
+var sums = new Dictionary<string, long>();
+for (int i = 0; i < buyers.Count; i++)
+{
+    long current;
+    sums.TryGetValue(buyers[i], out current);   // если покупателя ещё нет, current будет 0
+    sums[buyers[i]] = current + amounts[i];
+}
+
 var totals = new List<(string Buyer, long Total)>();
 foreach (string b in unique)
 {
-    long total = 0;
-    for (int i = 0; i < buyers.Count; i++)           // УЗКОЕ МЕСТО №4: O(n·m)
-        if (buyers[i] == b)
-            total += amounts[i];
-    totals.Add((b, total));
+    totals.Add((b, sums[b]));
 }
 Console.WriteLine($"Максимум потратил: {totals.MaxBy(t => t.Total).Buyer}  ({sw.ElapsedMilliseconds} мс)");
-
 Console.WriteLine($"ИТОГО: {swTotal.ElapsedMilliseconds} мс");
