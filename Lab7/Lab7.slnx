@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Converter.App/Converter.App.csproj" />
+  <Project Path="Converter.Core/Converter.Core.csproj" />
+  <Project Path="Converter.Tests/Converter.Tests.csproj" />
+</Solution>
